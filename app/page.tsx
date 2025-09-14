@@ -11,6 +11,7 @@ import { getPosts } from "@/lib/api";
 import { mcokUser } from "@/lib/mock";
 import { Suspense } from "react";
 import { PostCardListSkeleton } from "@/components/feed/post-skeleton";
+import Link from "next/link";
 
 export default async function Home({
   searchParams,
@@ -40,10 +41,12 @@ export default async function Home({
               </Avatar>
             }
           </div>
-          <div className="flex w-full items-center justify-between">
-            <div className="text-gray-500">새로운 소식이 있나요?</div>
-            <Button variant={"outline"}>게시</Button>
-          </div>
+          <Link href={"/create"} className="w-full">
+            <div className="flex w-full items-center justify-between">
+              <div className="text-gray-500">새로운 소식이 있나요?</div>
+              <Button variant={"outline"}>게시</Button>
+            </div>
+          </Link>
         </div>
         <HydrationBoundary state={dehydratedState}>
           <InfinitePostsList category={category ?? null} />

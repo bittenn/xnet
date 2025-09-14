@@ -15,7 +15,7 @@ export function InfinitePostsList({ category }: InfinitePostsListProps) {
   const { data, fetchNextPage, hasNextPage, isFetchingNextPage } =
     useInfinitePosts(10, category);
 
-  const { ref, inView } = useInView({ threshold: 0.1 });
+  const { ref, inView } = useInView({ rootMargin: "200px" });
 
   useEffect(() => {
     if (inView && hasNextPage && !isFetchingNextPage) {
@@ -31,7 +31,7 @@ export function InfinitePostsList({ category }: InfinitePostsListProps) {
       ))}
       {hasNextPage && (
         <div ref={ref} className="">
-          {isFetchingNextPage && <PostCardListSkeleton />}
+          {isFetchingNextPage && <PostCardListSkeleton count={1} />}
         </div>
       )}
     </div>

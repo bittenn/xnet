@@ -18,6 +18,5 @@ export const getPosts = async (request: ListRequest): Promise<Post[]> => {
 
 export const toggleLike = async (postId: number) => {
   await new Promise((resolve) => setTimeout(resolve, TIME_OUT));
-  console.log(postId);
   return { success: true };
 };

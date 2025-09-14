@@ -144,7 +144,6 @@ export const PostCard = ({ post }: PostCardProps) => {
                         fill
                         className="object-contain"
                         sizes="(max-width: 768px) 100vw, 650px"
-                        // 이미지 lazy loading
                         priority={index === 0}
                         loading={index === 0 ? "eager" : "lazy"}
                         decoding="async"
