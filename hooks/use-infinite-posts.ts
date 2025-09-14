@@ -1,6 +1,7 @@
 "use client";
 
 import { useInfiniteQuery } from "@tanstack/react-query";
+
 import { getPosts } from "@/lib/api";
 
 export function useInfinitePosts(limit = 10, category: string | null) {

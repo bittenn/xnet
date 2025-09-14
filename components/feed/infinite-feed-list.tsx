@@ -2,8 +2,11 @@
 
 import { useEffect } from "react";
 import { useInView } from "react-intersection-observer";
-import { PostCard } from "./post-card";
+
 import { useInfinitePosts } from "@/hooks/use-infinite-posts";
+
+import { PostCard } from "./post-card";
+import { PostCardListSkeleton } from "./post-skeleton";
 
 interface InfinitePostsListProps {
   category: string | null;
@@ -27,8 +30,8 @@ export function InfinitePostsList({ category }: InfinitePostsListProps) {
         <PostCard key={post.id} post={post} />
       ))}
       {hasNextPage && (
-        <div ref={ref} className="flex h-20 items-center justify-center">
-          {isFetchingNextPage && <div>더 불러오는 중...</div>}
+        <div ref={ref} className="">
+          {isFetchingNextPage && <PostCardListSkeleton />}
         </div>
       )}
     </div>

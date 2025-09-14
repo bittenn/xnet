@@ -1,8 +1,9 @@
 import { Post } from "@/types";
-import { mockPosts } from "../mock";
 import { ListRequest } from "@/types/api";
 
-let TIME_OUT = 500;
+import { mockPosts } from "../mock";
+
+const TIME_OUT = 1000;
 export const getPosts = async (request: ListRequest): Promise<Post[]> => {
   const { page, limit, category } = request;
 
@@ -17,5 +18,6 @@ export const getPosts = async (request: ListRequest): Promise<Post[]> => {
 
 export const toggleLike = async (postId: number) => {
   await new Promise((resolve) => setTimeout(resolve, TIME_OUT));
+  console.log(postId);
   return { success: true };
 };
