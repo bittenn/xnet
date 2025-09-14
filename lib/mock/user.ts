@@ -1,6 +1,6 @@
 import { User } from "@/types";
 
-export const mcokUser: User = {
+export const mockUser: User = {
   id: "user1",
   name: "홍길동",
   nickname: "myusername",

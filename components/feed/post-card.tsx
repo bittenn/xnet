@@ -11,18 +11,21 @@ import {
   FaAngleRight,
 } from "react-icons/fa";
 import { Swiper, SwiperSlide } from "swiper/react";
+
+import { HighlightedText } from "@/components/common/highlighted-text";
+import { ImageViewer } from "@/components/common/image-viewer";
 import { toggleLike } from "@/lib/api";
+import { relTime } from "@/lib/reltime";
 import { cn } from "@/lib/utils";
 import { Post } from "@/types";
+
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 import { Button } from "../ui/button";
+
 import "swiper/css";
 import "swiper/css/pagination";
-import { CommentList } from "./comment-list";
-import { relTime } from "@/lib/reltime";
-import { ImageViewer } from "@/components/common/image-viewer";
-import { HighlightedText } from "@/components/common/highlighted-text";
 import { CommentBox } from "./comment-box";
+import { CommentList } from "./comment-list";
 
 interface PostCardProps {
   post: Post;
@@ -202,10 +205,7 @@ export const PostCard = ({ post }: PostCardProps) => {
           </div>
 
           {!!comments.length && <CommentList comments={comments} />}
-          <CommentBox
-            postId={post.id}
-            onAdd={(c) => setComments((prev) => [...prev, c])}
-          />
+          <CommentBox onAdd={(c) => setComments((prev) => [...prev, c])} />
         </div>
       </div>
 

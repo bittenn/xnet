@@ -1,8 +1,9 @@
 "use client";
 import Image from "next/image";
 import { useEffect } from "react";
-import { Button } from "../ui/button";
 import { IoCloseSharp } from "react-icons/io5";
+
+import { Button } from "../ui/button";
 
 export function ImageViewer({
   open,

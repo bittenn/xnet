@@ -3,11 +3,11 @@
 import { useState } from "react";
 import { FaCheckCircle, FaHeart, FaRegHeart } from "react-icons/fa";
 
+import { relTime } from "@/lib/reltime";
 import { Comment } from "@/types/post";
 
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 import { Button } from "../ui/button";
-import { relTime } from "@/lib/reltime";
 
 interface CommentListProps {
   comments: Partial<Comment>[];

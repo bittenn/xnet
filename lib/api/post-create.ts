@@ -1,6 +1,7 @@
 import { Post } from "@/types";
 import { CreatePostData } from "@/types/post-create";
-import { mcokUser, mockCategories, mockPosts } from "../mock";
+
+import { mockUser, mockCategories, mockPosts } from "../mock";
 
 export const createPost = async (
   data: CreatePostData,
@@ -9,7 +10,7 @@ export const createPost = async (
 
   const newPost: Post = {
     id: Date.now(),
-    author: mcokUser,
+    author: mockUser,
     content: data.content,
     images: data.imageUrls,
     category: data.category,

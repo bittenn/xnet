@@ -1,4 +1,4 @@
-"use clinet";
+"use client";
 import { Modal } from "@/components/common/modal";
 import { CreatePostForm } from "@/components/create-post/create-post-form";
 

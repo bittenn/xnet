@@ -1,16 +1,17 @@
 "use client";
 
-import { useState, useCallback } from "react";
+import Image from "next/image";
 import { useRouter } from "next/navigation";
+import { useState, useCallback } from "react";
 import { useDropzone } from "react-dropzone";
+import { FaImage, FaTimes } from "react-icons/fa";
+
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
-import { mockCategories } from "@/lib/mock/categories";
-import { mcokUser } from "@/lib/mock";
 import { useCreatePost } from "@/hooks/use-create-post";
-import { FaImage, FaTimes } from "react-icons/fa";
-import Image from "next/image";
+import { mockUser } from "@/lib/mock";
+import { mockCategories } from "@/lib/mock/categories";
 
 interface CreatePostFormProps {
   isModal?: boolean;
@@ -87,25 +88,26 @@ export const CreatePostForm = ({ isModal = false }: CreatePostFormProps) => {
     remainingChars >= 0 &&
     !createPostMutation.isPending;
 
-  const handleCancle = () => {
+  const handleCancel = () => {
     if (isModal) {
       router.back();
     } else {
       router.replace("/");
     }
   };
+
   return (
     <div className="mx-auto w-full p-4">
       <form onSubmit={handleSubmit} className="space-y-4">
         {/* 사용자 정보 */}
         <div className="flex items-center gap-3">
           <Avatar className="h-12 w-12">
-            <AvatarImage src={mcokUser.profileImage} alt={mcokUser.name} />
-            <AvatarFallback>{mcokUser.name[0]}</AvatarFallback>
+            <AvatarImage src={mockUser.profileImage} alt={mockUser.name} />
+            <AvatarFallback>{mockUser.name[0]}</AvatarFallback>
           </Avatar>
           <div>
-            <div className="font-semibold">{mcokUser.name}</div>
-            <div className="text-sm text-gray-500">@{mcokUser.nickname}</div>
+            <div className="font-semibold">{mockUser.name}</div>
+            <div className="text-sm text-gray-500">@{mockUser.nickname}</div>
           </div>
         </div>
 
@@ -199,7 +201,7 @@ export const CreatePostForm = ({ isModal = false }: CreatePostFormProps) => {
             type="button"
             className="px-8"
             variant={"destructive"}
-            onClick={handleCancle}
+            onClick={handleCancel}
           >
             취소
           </Button>

@@ -3,15 +3,14 @@ import {
   HydrationBoundary,
   QueryClient,
 } from "@tanstack/react-query";
+import Link from "next/link";
 
+import { FilterBar } from "@/components/feed/filter-bar";
 import { InfinitePostsList } from "@/components/feed/infinite-feed-list";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { getPosts } from "@/lib/api";
-import { mcokUser } from "@/lib/mock";
-import { Suspense } from "react";
-import { PostCardListSkeleton } from "@/components/feed/post-skeleton";
-import Link from "next/link";
+import { mockUser } from "@/lib/mock";
 
 export default async function Home({
   searchParams,
@@ -19,11 +18,19 @@ export default async function Home({
   searchParams: Promise<{ [key: string]: string | undefined }>;
 }) {
   const category = (await searchParams).category;
+  const sort = (await searchParams).sort || "desc";
+
   const queryClient = new QueryClient();
 
   await queryClient.prefetchInfiniteQuery({
-    queryKey: ["posts", "infinite", category],
-    queryFn: () => getPosts({ page: 1, limit: 10, category: category ?? null }),
+    queryKey: ["posts", "infinite", { category, sort }],
+    queryFn: () =>
+      getPosts({
+        page: 1,
+        limit: 10,
+        category: category ?? null,
+        sort: sort ?? "desc",
+      }),
     initialPageParam: 1,
   });
 
@@ -31,17 +38,18 @@ export default async function Home({
 
   return (
     <div className="mx-auto w-full py-5 md:max-w-[640px]">
+      <FilterBar />
       <div className="overflow-hidden rounded-md md:border md:border-t-0">
         <div className="flex items-center gap-2 px-5 pt-7 pb-5 md:border-t">
           <div>
             {
               <Avatar className="h-[36px] w-[36px]">
-                <AvatarImage src={mcokUser.profileImage} />
+                <AvatarImage src={mockUser.profileImage} />
                 <AvatarFallback />
               </Avatar>
             }
           </div>
-          <Link href={"/create"} className="w-full">
+          <Link href={"/create"} prefetch scroll={false} className="w-full">
             <div className="flex w-full items-center justify-between">
               <div className="text-gray-500">새로운 소식이 있나요?</div>
               <Button variant={"outline"}>게시</Button>
@@ -49,7 +57,7 @@ export default async function Home({
           </Link>
         </div>
         <HydrationBoundary state={dehydratedState}>
-          <InfinitePostsList category={category ?? null} />
+          <InfinitePostsList category={category ?? null} sort={sort} />
         </HydrationBoundary>
       </div>
     </div>

@@ -1,16 +1,16 @@
 "use client";
 import { useState } from "react";
+
 import { Button } from "@/components/ui/button";
-import { mcokUser } from "@/lib/mock";
+import { mockUser } from "@/lib/mock";
+import { User } from "@/types";
 
 export function CommentBox({
-  postId,
   onAdd,
 }: {
-  postId: number;
   onAdd: (c: {
     id: string;
-    author: any;
+    author: User;
     content: string;
     createdAt: string;
   }) => void;
@@ -23,7 +23,7 @@ export function CommentBox({
     setPending(true);
     const optimistic = {
       id: `tmp-${Date.now()}`,
-      author: mcokUser,
+      author: mockUser,
       content: value,
       createdAt: new Date().toISOString(),
     };
