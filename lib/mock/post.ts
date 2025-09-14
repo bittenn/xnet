@@ -1,6 +1,6 @@
-import { IPost } from "@/types";
+import { Post } from "@/types";
 
-export const mockPosts: IPost[] = [
+export const mockPosts: Post[] = [
   {
     id: 50,
     author: {
@@ -14,7 +14,7 @@ export const mockPosts: IPost[] = [
     images: ["https://picsum.photos/500/300?random=1"],
     category: 1,
     categoryName: "요리",
-    createdAt: "2024-01-15T14:30:00Z",
+    createdAt: "2025-09-14T07:57:06.079Z",
     likes: 67,
     retweets: 12,
     comments: 8,
