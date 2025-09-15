@@ -6,8 +6,6 @@ import { mockUser, mockCategories, mockPosts } from "../mock";
 export const createPost = async (
   data: CreatePostData,
 ): Promise<{ success: boolean; postId?: number }> => {
-  await new Promise((resolve) => setTimeout(resolve, 1000));
-
   const newPost: Post = {
     id: Date.now(),
     author: mockUser,
